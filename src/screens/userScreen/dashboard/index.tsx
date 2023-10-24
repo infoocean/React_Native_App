@@ -74,12 +74,13 @@ const Userdashboard = ({ navigation }: any) => {
                         </View>
                         <View style={styles.container}>
                             {enrollCourse.length > 0 ? enrollCourse.map((item: any, index: any) => {
-                                return <TouchableOpacity key={index} style={styles.menuBox}>
+                                return <TouchableOpacity key={index} style={styles.menuBox} onPress={() => navigation.navigate('Course Details')}>
                                     <Image
                                         style={styles.icon}
                                         source={{ uri: `${SERVER_API_URL + "/" + item?.course?.course?.image}` }}
                                     />
                                     <Text style={styles.info}>{item?.course?.course?.title}</Text>
+                                    <Text style={styles.info1}>Type : {item?.course?.course?.is_chargeable}</Text>
                                 </TouchableOpacity>
                             }) : null}
                         </View>

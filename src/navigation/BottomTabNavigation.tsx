@@ -16,6 +16,7 @@ import BackButtonhandler from '../components/NavigationHeaderCmp/backButtoncmp';
 import { createStackNavigator } from '@react-navigation/stack';
 import CourseDetails from '../screens/userScreen/courses/courseDetails';
 import UserSubscriptionDetails from '../screens/userScreen/subscription/subscriptionDetails';
+import { ChatDetails } from '../screens/chats/chatsDetails';
 const Tab = createBottomTabNavigator();
 const NavStack = createStackNavigator();
 
@@ -66,6 +67,31 @@ const SubscriptionStackScreen = () => (
             }} />
     </NavStack.Navigator>
 );
+
+//chats stack navigation
+const ChatStackScreen = () => (
+    <NavStack.Navigator screenOptions={({ route }) => ({
+        headerStyle: { backgroundColor: '#e8661b', height: 50 },
+        headerTintColor: '#fff',
+    })}  >
+        <NavStack.Screen name="Chats"
+            component={Chats}
+            options={{
+                headerRight: () =>
+                    <NavRighrtheader />,
+                headerLeft: () =>
+                    <BackButtonhandler />,
+            }}
+        />
+        <NavStack.Screen name="Chats Details"
+            component={ChatDetails}
+            options={{
+                headerRight: () =>
+                    <NavRighrtheader />,
+            }} />
+    </NavStack.Navigator>
+);
+
 
 const BottomTabNavigation = () => {
     return (
@@ -144,14 +170,9 @@ const BottomTabNavigation = () => {
                 }} />
             <Tab.Screen
                 name="Chats"
-                component={Chats}
+                component={ChatStackScreen}
                 options={{
-                    tabBarLabel: 'Chats',
-                    title: 'Chats',
-                    headerRight: () =>
-                        <NavRighrtheader />,
-                    headerLeft: () =>
-                        <BackButtonhandler />,
+                    headerShown: false,
                 }} />
 
 

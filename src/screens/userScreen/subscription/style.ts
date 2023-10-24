@@ -6,9 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   subCard: {
-    marginHorizontal: 15,
-    marginVertical: 15,
-    padding: 7,
+    padding: 10,
     borderRadius: 10,
     backgroundColor: '#f4f4f4',
   },
@@ -30,7 +28,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     borderBottomColor: '#ccc',
-    borderLeftWidth: 6,
   },
   cardNumber: {
     fontSize: 18,
@@ -110,6 +107,98 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+  },
+  eventList: {
+    marginTop: 20,
+  },
+  eventBox: {
+    padding: 10,
+    marginTop: 5,
+    marginBottom: 5,
+    flexDirection: 'row',
+  },
+  eventDate: {
+    flexDirection: 'column',
+  },
+  eventDay: {
+    fontSize: 50,
+    color: '#0099FF',
+    fontWeight: '600',
+  },
+  eventMonth: {
+    fontSize: 16,
+    color: '#0099FF',
+    fontWeight: '600',
+  },
+  eventContent: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginLeft: 10,
+    backgroundColor: '#FFFFFF',
+    padding: 10,
+    borderRadius: 10,
+  },
+  description: {
+    fontSize: 15,
+    color: '#646464',
+  },
+  eventTime: {
+    fontSize: 18,
+    color: '#151515',
+  },
+  userName: {
+    fontSize: 16,
+    color: '#151515',
+  },
+
+  card: {
+    marginHorizontal: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+    marginBottom: 20,
+  },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  itemImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginRight: 20,
+  },
+  itemContent: {
+    flex: 1,
+  },
+  itemName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  itemPrice: {
+    fontSize: 16,
+    color: '#999',
+  },
+  buttons: {
+    flexDirection: 'row',
+  },
+  button: {
+    backgroundColor: '#FFC107',
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

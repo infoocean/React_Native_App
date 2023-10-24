@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
   },
   addButton: {
     position: 'absolute',
-    bottom: 20,
-    right: 20,
+    bottom: 5,
+    right: 5,
     width: 60,
     height: 60,
     borderRadius: 30,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   menuBox: {
     width: 150,
-    height: 150,
+    height: 160,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
@@ -97,10 +97,13 @@ const styles = StyleSheet.create({
     height: 100,
   },
   info: {
-    fontSize: 20,
-    color: '#696969',
+    fontSize: 18,
+    color: 'black',
     marginTop: 10,
-    marginBottom: 10,
+  },
+  info1: {
+    fontSize: 10,
+    color: 'gray',
   },
   coursecontainer: {
    // flex: 1,

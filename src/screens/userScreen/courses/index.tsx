@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import styles from './style';
-import { getSubscriptionDet } from '../../../services/subscriptionServices';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
-import { getEnrolledCourse } from '../../../services/courseServices';
-import { SERVER_API_URL } from '../../../api/api';
+import { getEnrolledCourse } from '../../../services/courseServices'; import { SERVER_API_URL } from '../../../api/api';
 const UserEnrolledCourses = ({ navigation }: any) => {
     //authtoken login user det from redux
     const AuthToken = useSelector((state: any) => state?.setLoginUserReducer?.token);
@@ -22,29 +19,36 @@ const UserEnrolledCourses = ({ navigation }: any) => {
         getCourses();
     }, [])
     return (
-        <ScrollView>
-            <View style={styles.subcontainer}>
-                <View style={styles.coursecontainer}>
-                    <View style={styles.subCard}>
-                        <Text style={styles.subTitle}>Enrolled Courses</Text>
-                        <View style={styles.container}>
-                            {enrollCourse.length > 0 ? enrollCourse.map((item: any, index: any) => {
-                                return <TouchableOpacity key={index} style={styles.menuBox} onPress={() => navigation.navigate('Course Details')}>
-                                    <Image
-                                        style={styles.icon}
-                                        source={{ uri: `${SERVER_API_URL + "/" + item?.course?.course?.image}` }}
-                                    />
-                                    <Text style={styles.info}>{item?.course?.course?.title}</Text>
-                                </TouchableOpacity>
-                            }) : null}
-                        </View>
-                    </View>
-                </View>
-            </View>
+        <View style={styles.container}>
+            <Text style={styles.subTitle}>All Enrolled Courses</Text>
+            <FlatList
+                style={styles.list}
+                contentContainerStyle={styles.listContainer}
+                data={enrollCourse}
+                horizontal={false}
+                numColumns={2}
+                ItemSeparatorComponent={() => {
+                    return <View style={styles.separator} />
+                }}
+                renderItem={course => {
+                    const item = course?.item?.course?.course
+                    return (
+                        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Course Details')}>
+                            <View style={styles.imageContainer}>
+                                <Image style={styles.cardImage} source={{ uri: `${SERVER_API_URL}/${item?.image}` }} />
+                            </View>
+                            <View style={styles.cardContent}>
+                                <Text style={styles.title}>{item.title}</Text>
+                                <Text style={styles.subtitle}>Type : {item.is_chargeable} </Text>
+                            </View>
+                        </TouchableOpacity>
+                    )
+                }}
+            />
             <TouchableOpacity style={styles.addButton}>
                 <Text style={styles.addButtonText}>+</Text>
             </TouchableOpacity>
-        </ScrollView>
+        </View>
     );
 };
 export default UserEnrolledCourses;

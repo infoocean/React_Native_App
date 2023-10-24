@@ -21,32 +21,62 @@ const UserSubscriptionDetails = () => {
     useEffect(() => {
         getSubsdet();
     }, [])
+
+    const items = [
+        {
+            id: 1,
+            name: 'Apples',
+            price: 0.99,
+            image: 'https://www.bootdey.com/image/280x280/FF00FF/000000',
+        },
+        {
+            id: 2,
+            name: 'Bananas',
+            price: 0.79,
+            image: 'https://www.bootdey.com/image/280x280/00BFFF/000000',
+        },
+        {
+            id: 3,
+            name: 'Bread',
+            price: 2.99,
+            image: 'https://www.bootdey.com/image/280x280/20B2AA/000000',
+        },
+    ]
+
     return (
         <ScrollView>
             <View style={styles.subcontainer}>
                 <View style={styles.subCard}>
-                    <Text style={styles.subTitle}>Active Subscriptions</Text>
+                    <Text style={styles.subTitle}>Subscriptions Details</Text>
                     <View style={styles.subcardContainer}>
-                        <View style={styles.cardInfoContainer}>
-                            <Image source={{ uri: 'https://mangoit-lms.mangoitsol.com/Images/pages_icon/bell1.png' }} style={styles.logo} />
-                            <Text style={styles.cardNumber}>${SubsDet?.price}</Text>
-                        </View>
-                        <Text style={styles.cardNumber}>{SubsDet?.name}</Text>
-                        <View style={styles.cardInfoContainer}>
-                            <View style={styles.cardInfoItem}>
-                                <Text style={styles.cardInfoLabel}>Activation date</Text>
-                                <Text style={styles.cardInfoValue}>{moment(SubsDet?.start_date).format("MMM-DD-yyyy")}</Text>
-                            </View>
-                            <View style={styles.cardInfoItem}>
-                                <Text style={styles.cardInfoLabel}>Expiry Date</Text>
-                                <Text style={styles.cardInfoValue}>{moment(SubsDet?.expiry_date).format("MMM-DD-yyyy")}</Text>
-                            </View>
-                            <View style={styles.cardInfoItem}>
-                                <Text style={styles.cardInfoLabel}>Duration</Text>
-                                <Text style={styles.cardInfoValue}>{SubsDet?.duration_term}</Text>
-                            </View>
-                        </View>
+
+
                     </View>
+                </View>
+                <View style={styles.subCard}>
+                    <Text style={styles.subTitle}>Order  Details</Text>
+                    <FlatList
+                        data={items}
+                        renderItem={({ item }) => (
+                            <View style={styles.card}>
+                                <View style={styles.item}>
+                                    <Image source={{ uri: item.image }} style={styles.itemImage} />
+                                    <View style={styles.itemContent}>
+                                        <Text style={styles.itemName}>{item.name}</Text>
+                                        <Text style={styles.itemPrice}>${item.price.toFixed(2)}</Text>
+                                    </View>
+                                </View>
+                                <View style={styles.buttons}>
+                                    <TouchableOpacity style={styles.button}>
+                                        <Text style={styles.buttonText}>Add to Cart</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.button}>
+                                        <Text style={styles.buttonText}>Add to Wishlist</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        )}
+                                           />
                 </View>
             </View>
         </ScrollView>
