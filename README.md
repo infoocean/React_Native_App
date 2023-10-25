@@ -9,7 +9,7 @@ Node Version - v18.18.0 and npm version 9.8.1
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till cloning the GitHub repository, before proceeding.
 
 
-## Step 1: After completing the environment setup and installed dependencies you can clone the GitHub repository
+## Step 1: After completing the environment setup you can clone the GitHub repository
 
 using the command git clone https://github.com/infoocean/React_Native_App.git  and run command npm i to install all dependencies.
 
