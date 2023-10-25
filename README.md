@@ -3,15 +3,15 @@ bootstrapped using [`@react-native-community/cli`](https://github.com/react-nati
 
 # Getting Started
 
->**Note**: Make sure you have completed environment setup 
+>**Note**: Make sure you have completed the environment setup 
 Node Version - v18.18.0 and npm version 9.8.1
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till cloning the github repositery, before proceeding.
+>**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till cloning the GitHub repository, before proceeding.
 
 
-## Step 1: after completed environment setup and installed dependies you can clone the github repository
+## Step 1: After completing the environment setup and installed dependencies you can clone the GitHub repository
 
-using command git clone https://github.com/infoocean/React_Native_App.git  and run command npm i to install all dependencies.
+using the command git clone https://github.com/infoocean/React_Native_App.git  and run command npm i to install all dependencies.
 
 ## Step 2: Start the Metro Server
 
