@@ -128,7 +128,7 @@ const BottomTabNavigation = () => {
                     } return (
                         <Icon
                             name={iconName}
-                            size={size}
+                            size={22}
                             color={color}
                         />
                     );

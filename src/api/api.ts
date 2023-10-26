@@ -102,7 +102,7 @@ export const API = {
 
   //   //check enrolled courses
   //   checenrollcourses: `${BASE_URL}/checenrollcourses`,
-  //   topenrolledcourses: `${BASE_URL}/topenrolledcourses`,
+   topenrolledcourses: `${SERVER_API_URL}/topenrolledcourses`,
   //   getEnrollCoursesByUserId: `${BASE_URL}/get_enrollcourse_by_user_id`,
 
   //   //doenload payment receiprt

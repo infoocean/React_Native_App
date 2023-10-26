@@ -17,6 +17,24 @@ const getEnrolledCourse = async (authtoken: string, userId: number) => {
   }
 };
 
+//get top enrolled courses
+const getTopEnrolledCourse = async (authtoken: string) => {
+  try {
+    const response = await fetch(`${API.topenrolledcourses}`, {
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authtoken}`,
+      },
+    });
+    const topenrolledCoursejson = await response.json();
+    return topenrolledCoursejson;
+  } catch (error) {
+    return error;
+  }
+};
+
 // //user Registration
 // const userRegistration = async (token: any, payload: any) => {
 //   try {
@@ -71,4 +89,4 @@ const getEnrolledCourse = async (authtoken: string, userId: number) => {
 //   }
 // };
 
-export {getEnrolledCourse};
+export {getEnrolledCourse, getTopEnrolledCourse};

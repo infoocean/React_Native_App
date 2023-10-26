@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     flex: 1,
-    height: 80,
+    height: 100,
     width: null,
   },
   imageContainer: {

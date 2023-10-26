@@ -43,5 +43,4 @@ Now that you have successfully run the app, let's modify it.
 1. Open `App.tsx` in your text editor of choice and edit some lines.
 You've successfully run and modified your React Native App. :partying_face:
 
-# Getting Release APK File
 
