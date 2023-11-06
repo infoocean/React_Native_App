@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
     color: 'gray',
     textAlign: 'center'
   },
-
   /*top enrolled courses*/
   TopEnrolledcourSection: {
     padding: 7,

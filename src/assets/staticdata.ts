@@ -2,24 +2,23 @@ const carouselItems = [
   {
     title: 'We Provide Smart Solution For Your Learning Skills',
     content:
-      'Build a beautiful, modern website with flexible components built from scratch',
+      'Build a beautiful, modern website with flexible components built from scratch.',
     image:
-      'https://www.skillsfuture.gov.sg/images/default-source/carousel/banner-img-3.png?Status=Master&sfvrsn=d474dd3d_0',
+      'https://www.thesun.ie/wp-content/uploads/sites/3/2023/08/NINTCHDBPICT000831758052-1.jpg',
   },
   {
     title: 'We Provide Smart Solution For Your Learning Skills',
-    content: 'Build a beautiful, modern website with flexible components built from scratch.',
+    content:
+      'Build a beautiful, modern website with flexible components built from scratch.',
     image:
-      'https://www.skillsfuture.gov.sg/images/default-source/carousel/student-initiatives-banner-img.png?Status=Master&sfvrsn=7f86b81f_0',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9gbsRw_5Ljp2DAZXrp59bTi44ltIrlNEvgCcgL_Wb27BeB8RoHw5zemVVKcEI7IdtOk4&usqp=CAU',
   },
   {
     title: 'We Provide Smart Solution For Your Learning Skills',
-    content: 'Build a beautiful, modern website with flexible components built from scratch.',
+    content:
+      'Build a beautiful, modern website with flexible components built from scratch.',
     image:
-      'https://www.skillsfuture.gov.sg/images/default-source/carousel/banner-img-3.png?Status=Master&sfvrsn=d474dd3d_0',
+      'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202105/Teacher_pti2_1_1200x768.jpeg?size=690:388',
   },
 ];
 export {carouselItems};
-
-
-

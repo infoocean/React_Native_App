@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { PricingCard } from 'react-native-elements';
 import { styles } from './style';
-import CarouselSlider from '../../components/homeScreenCmp/carouselSlider';
+import CarouselSlider from '../../components/homeScreenCmp/CarouselSlider';
+import { TitleWithBottomLineComponent } from '../../components/homeScreenCmp/TitleWithBottomLineComponent';
+import { FatistoIcn, FontAwesome5Icn } from '../../components/IconsComponents/IconsCmp';
+import { TitleWithLinkComponent } from '../../components/homeScreenCmp/TitleWithLinkComponent';
+import { useSelector } from 'react-redux';
+import { getAllCourse, getTopEnrolledCourse } from '../../services/courseServices';
+import { SERVER_API_URL } from '../../api/api';
 
 const matches = [
   {
@@ -38,6 +44,26 @@ const matches = [
 ]
 
 const Home = () => {
+  const AuthToken = useSelector((state: any) => state?.setLoginUserReducer?.token);
+  const [FreeCourses, setFreeCourses] = useState<any>([])
+  const [PaidCourses, setPaidCourses] = useState<any>([])
+  const [TopEnroledCourses, setTopEnroledCourses] = useState<any>([])
+  //get all courses
+  const getCourses = async () => {
+    const courseData: any = await getAllCourse(AuthToken);
+  }
+  //get top enrolled Courses
+  const getTopEnrolledCourses = async () => {
+    const EnrolledcourseData: any = await getTopEnrolledCourse(AuthToken);
+    setTopEnroledCourses(EnrolledcourseData)
+  }
+  useEffect(() => {
+    getCourses();
+    getTopEnrolledCourses();
+  }, [])
+
+  console.log(TopEnroledCourses, "fkj")
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <ScrollView>
@@ -45,61 +71,61 @@ const Home = () => {
         <CarouselSlider />
         {/*how it works component*/}
         <View style={styles.howitworkscontainer}>
-          <Text style={styles.title}>How It Works ?</Text>
-          <View style={styles.iconcontainer}>
-            <View style={styles.logoContainer}>
-              <Image
-                style={styles.logo}
-                source={{ uri: 'https://www.bootdey.com/img/Content/avatar/avatar6.png' }}
-              />
+          <TitleWithBottomLineComponent headerTitle="How It Works ?" borderWidth="100" />
+          <View style={styles.Iconcircle}>
+            <View>
+              <View style={styles.iconarticle1}>
+                <View style={styles.iconarcircle2}>
+                  <View style={styles.iconarcircle3}>
+                    <FatistoIcn name="locked" size="18" color="black" />
+                  </View>
+                </View>
+              </View>
               <Text style={styles.subtitle}>Sign Up</Text>
             </View>
-            <View style={styles.logoContainer}>
-              <Image
-                style={styles.logo}
-                source={{ uri: 'https://www.bootdey.com/img/Content/avatar/avatar6.png' }}
-              />
+            <View>
+              <View style={styles.iconarticle1}>
+                <View style={styles.iconarcircle2}>
+                  <View style={styles.iconarcircle3}>
+                    <FontAwesome5Icn name="graduation-cap" size="18" color="black" />
+                  </View>
+                </View>
+              </View>
               <Text style={styles.subtitle}>Select Courses</Text>
             </View>
-            <View style={styles.logoContainer}>
-              <Image
-                style={styles.logo}
-                source={{ uri: 'https://www.bootdey.com/img/Content/avatar/avatar6.png' }}
-              />
+            <View>
+              <View style={styles.iconarticle1}>
+                <View style={styles.iconarcircle2}>
+                  <View style={styles.iconarcircle3}>
+                    <FontAwesome5Icn name="book-reader" size="18" color="black" />
+                  </View>
+                </View>
+              </View>
               <Text style={styles.subtitle}>Start Learning</Text>
             </View>
           </View>
         </View>
         {/*Top Enrolled Courses*/}
-        <View style={styles.topenrolledcourses}>
-          <Text style={styles.title}>Top Enrolled Courses</Text>
-          <View style={styles.container}>
-            <View style={styles.section}>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>6 Courses Showing</Text>
-                <TouchableOpacity style={styles.seeAllButton}>
-                  <Text style={styles.seeAllButtonText}>See all</Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.sectionBody}>
-                <ScrollView horizontal contentContainerStyle={styles.sectionScroll}>
-                  {matches.map(({ avatar, id, name, age }) => (
-                    <View style={styles.sectionCard} key={id}>
-                      <Image style={styles.sectionImage} source={{ uri: avatar }} />
-                      <View style={styles.sectionInfo}>
-                        <Text style={styles.sectionLabel}>{name}</Text>
-                        <Text style={styles.sectionLabel}>Age: {age}</Text>
-                      </View>
-                    </View>
-                  ))}
-                </ScrollView>
-              </View>
-            </View>
+        <View style={styles.topenrolledcoursesContainer}>
+          <TitleWithBottomLineComponent headerTitle="Top Enrolled Courses" borderWidth="160" />
+          <View style={styles.topenrolledcoursesSection}>
+            <TitleWithLinkComponent title="6 Courses Showing" navigatioName="" />
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+              {TopEnroledCourses && TopEnroledCourses.length > 0 && TopEnroledCourses?.map(({ image, id, title, is_chargeable }: any) => (
+                <View style={styles.sectionCard} key={id}>
+                  <Image style={styles.sectionImage} source={{ uri: `${SERVER_API_URL}/${image}` }} />
+                  <View style={styles.courseInfo}>
+                    <Text style={styles.courseTirle}>{title}</Text>
+                    <Text style={styles.courseType}>Type: {is_chargeable}</Text>
+                  </View>
+                </View>
+              ))}
+            </ScrollView>
           </View>
         </View>
         {/*top free courses*/}
-        <View style={styles.topenrolledcourses}>
-          <Text style={styles.title}>Top Free Courses</Text>
+        {/* <View style={styles.topenrolledcourses}>
+          <HeaderTitle />
           <View style={styles.container}>
             <View style={styles.section}>
               <View style={styles.sectionHeader}>
@@ -123,10 +149,10 @@ const Home = () => {
               </View>
             </View>
           </View>
-        </View>
+        </View> */}
         {/*top paid courses*/}
-        <View style={styles.topenrolledcourses}>
-          <Text style={styles.title}>Top Paid Courses</Text>
+        {/* <View style={styles.topenrolledcourses}>
+          <HeaderTitle />
           <View style={styles.container}>
             <View style={styles.section}>
               <View style={styles.sectionHeader}>
@@ -150,10 +176,10 @@ const Home = () => {
               </View>
             </View>
           </View>
-        </View>
+        </View> */}
         {/*our subscription plan*/}
-        <View style={styles.topenrolledcourses}>
-          <Text style={styles.title}>Our Subscription plan</Text>
+        {/* <View style={styles.topenrolledcourses}>
+          <HeaderTitle />
           <View style={styles.container}>
             <PricingCard
               color="black"
@@ -163,7 +189,7 @@ const Home = () => {
               button={{ title: 'Subscribe Now', icon: 'flight-takeoff' }}
             />
           </View>
-        </View>
+        </View> */}
       </ScrollView>
     </SafeAreaView >
 

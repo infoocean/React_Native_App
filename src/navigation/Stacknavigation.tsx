@@ -1,19 +1,45 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react'
-import Login from '../screens/auth/login';
 import Register from '../screens/auth/register';
 import ForgotPassword from '../screens/auth/forgotpassword';
 import ResetPasswprd from '../screens/auth/resetpassword';
+import LoginWithTouchpassword from '../screens/auth/LoginWithTouhOrPassword';
+import HomeScreen from '../screens/home';
+import { About } from '../screens/about';
+import Plans from '../screens/plans';
+import Courses from '../screens/courses';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function Home() {
+    return (
+        <Tab.Navigator>
+            <Tab.Screen
+                name="Homes"
+                component={HomeScreen}
+                options={{
+                    headerShown: false, tabBarStyle: {
+                        display: 'none',
+                    },
+                }}
+            />
+        </Tab.Navigator>
+    );
+}
+
+
 const Stacknavigation = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Login" component={Login}
+            <Stack.Screen
+                name="Login" component={LoginWithTouchpassword}
                 options={{
                     title: 'Login',
                     headerStyle: {
                         backgroundColor: '#e8661b',
                     },
+                    headerShown: false,
                     headerTintColor: 'white',
                     headerTitleStyle: {
                         fontWeight: 'bold',
@@ -44,9 +70,58 @@ const Stacknavigation = () => {
                     },
                 }}
             />
+            <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{
+                    title: 'Home',
+                    headerStyle: {
+                        backgroundColor: '#e8661b',
+                    },
+                    headerTintColor: 'white',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
+            />
+            <Stack.Screen name="About" component={About}
+                options={{
+                    title: 'About',
+                    headerStyle: {
+                        backgroundColor: '#e8661b',
+                    },
+                    headerTintColor: 'white',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
+            />
+            <Stack.Screen name="Plans" component={Plans}
+                options={{
+                    title: 'Plans',
+                    headerStyle: {
+                        backgroundColor: '#e8661b',
+                    },
+                    headerTintColor: 'white',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
+            />
+            <Stack.Screen name="Courses" component={Courses}
+                options={{
+                    title: 'Plans',
+                    headerStyle: {
+                        backgroundColor: '#e8661b',
+                    },
+                    headerTintColor: 'white',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
+            />
             <Stack.Screen name="Reset Password" component={ResetPasswprd} />
         </Stack.Navigator>
     )
 }
-
 export default Stacknavigation

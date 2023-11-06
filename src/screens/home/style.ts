@@ -1,33 +1,47 @@
 import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   safeAreaView: {
-    backgroundColor: 'white',
+    backgroundColor: '#FAFAFA',
     flex: 1,
   },
+  /*how it works style*/
   howitworkscontainer: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#e8661b',
-    textAlign: 'center',
-  },
-  iconcontainer: {
+  Iconcircle: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    marginTop: 20,
+  },
+  iconarticle1: {
+    position: 'relative',
+    borderRadius: 150,
+    backgroundColor: '#e8eaed',
+    width: 110,
+    height: 110,
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
     alignItems: 'center',
   },
-  logoContainer: {
-    overflow: 'hidden',
-    marginBottom: 40,
-    margin: 10,
-  },
-  logo: {
-    width: 100,
-    height: 100,
+  iconarcircle2: {
+    position: 'relative',
     borderRadius: 50,
+    backgroundColor: '#000',
+    width: 70,
+    height: 70,
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconarcircle3: {
+    borderRadius: 50,
+    backgroundColor: '#fff',
+    width: 30,
+    height: 30,
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   subtitle: {
     fontSize: 12,
@@ -36,66 +50,47 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'black',
   },
-  topenrolledcourses: {},
-  container: {
-    flex: 1,
-    marginTop: 10,
-  },
-  section: {
-    paddingHorizontal: 16,
-    marginVertical: 5,
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  /*top enrolled courses style*/
+  topenrolledcoursesContainer: {
     marginTop: 15,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: 'black',
-  },
-  seeAllButton: {
-    backgroundColor: 'lightgray',
-    padding: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 4,
-  },
-  seeAllButtonText: {
-    color: 'black',
-  },
-  sectionBody: {
-    marginTop: 10,
-  },
-  sectionScroll: {
-    paddingBottom: 10,
+  topenrolledcoursesSection: {
+    paddingHorizontal: 10,
   },
   sectionCard: {
-    width: 200,
-    minHeight: 200,
-    backgroundColor: '#fff',
-    shadowColor: '#B0C4DE',
+    width: 80,
+    minHeight: 120,
+    backgroundColor: 'white',
+    shadowColor: 'gray',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 1,
-    margin: 10,
-    borderRadius: 6,
+    elevation: 10,
+    marginTop: 15,
+    marginRight: 15,
+    marginBottom: 15,
   },
   sectionImage: {
     width: '100%',
     aspectRatio: 1,
   },
-  sectionInfo: {
-    padding: 10,
+  courseInfo: {
+    padding: 5,
+    marginBottom: 0,
+    paddingBottom: 0,
   },
-  sectionLabel: {
-    fontSize: 12,
+  courseTirle: {
+    fontSize: 13,
     marginBottom: 2,
     textAlign: 'center',
     color: 'black',
+  },
+  courseType: {
+    fontSize: 9,
+    textAlign: 'center',
+    color: 'gray',
+    marginBottom: 0,
+    paddingBottom: 0,
   },
 });
 

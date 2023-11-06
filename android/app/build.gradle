@@ -70,9 +70,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 android {
     ndkVersion rootProject.ext.ndkVersion
-
     compileSdkVersion rootProject.ext.compileSdkVersion
-
     namespace "com.reactnativeapp"
     defaultConfig {
         applicationId "com.reactnativeapp"

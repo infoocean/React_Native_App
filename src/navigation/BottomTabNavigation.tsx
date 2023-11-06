@@ -1,11 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
-import Home from '../screens/home';
-import { About } from '../screens/about';
-import Courses from '../screens/courses';
-import Plans from '../screens/plans';
 import Userdashboard from '../screens/userScreen/dashboard';
 import ProfileScreen from '../screens/profile';
 import UserSubscription from '../screens/userScreen/subscription';
@@ -91,8 +86,6 @@ const ChatStackScreen = () => (
             }} />
     </NavStack.Navigator>
 );
-
-
 const BottomTabNavigation = () => {
     return (
         <Tab.Navigator
@@ -174,32 +167,6 @@ const BottomTabNavigation = () => {
                 options={{
                     headerShown: false,
                 }} />
-
-
-
-            {/* <Tab.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    tabBarLabel: 'Home',
-                    title: 'Home',
-                }} /> */}
-            {/* <Tab.Screen
-                name="About"
-                component={About}
-                options={{
-                    tabBarLabel: 'About',
-                    title: 'About'
-                }} /> */}
-
-            {/* <Tab.Screen
-                name="Plans"
-                component={Plans}
-                options={{
-                    tabBarLabel: 'Plans',
-                    title: 'Plans'
-                }} /> */}
-
         </Tab.Navigator>
     )
 }

@@ -3,7 +3,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
   scrollView: {
     flex: 1,
     backgroundColor: 'pink',
@@ -167,5 +166,76 @@ export const styles = StyleSheet.create({
     color: '#20B2AA',
     fontSize: 12,
     fontWeight: 'bold',
+  },
+
+  buttons: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: 250,
+    height: 50,
+    borderRadius: 30,
+    borderWidth: 0.2,
+    borderColor: '#eee',
+    borderBottomWidth: 2,
+    marginVertical: 20,
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    elevation: 1,
+  },
+  infoButton: {
+    backgroundColor: '#2196f3',
+    borderColor: '#0e3860',
+    shadowColor: '#1c5da6',
+  },
+  passButton: {
+    backgroundColor: '#e8661b',
+    borderColor: '#b87208',
+    shadowColor: '#1c5da6',
+  },
+  buttonTextnew: {
+    fontSize: 15,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  sepratornew: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  header: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: '100%',
+    height: 120,
+  },
+  heading: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  loginBottomView: {
+    position: 'absolute',
+    bottom: 10,
+    marginRight: 30,
+    marginLeft: 57,
+  },
+  iconContainer: {
+    flex: 1,
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent:'space-between',
+    flexDirection: 'row',
+  },
+  btnopacity: {
+    marginRight: 33,
+    alignContent: 'center',
+    alignItems: 'center',
+  },
+  iconFonts: {
+    color: 'black',
+    fontSize: 15,
   },
 });

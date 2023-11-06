@@ -16,7 +16,7 @@ export const API = {
   //   deleteUser: `${BASE_URL}/deleteuser`,
 
   //Courses
-  //getCourses: `${BASE_URL}/getcourse`,
+  getCourses: `${SERVER_API_URL}/getcourse`,
   //   getCoursesByCouseId: `${BASE_URL}/get_course_by_id`,
   //   createCourse: `${BASE_URL}/createcourse`,
   //   updateCourse: `${BASE_URL}/updatecourse`,
@@ -102,7 +102,7 @@ export const API = {
 
   //   //check enrolled courses
   //   checenrollcourses: `${BASE_URL}/checenrollcourses`,
-   topenrolledcourses: `${SERVER_API_URL}/topenrolledcourses`,
+  topenrolledcourses: `${SERVER_API_URL}/topenrolledcourses`,
   //   getEnrollCoursesByUserId: `${BASE_URL}/get_enrollcourse_by_user_id`,
 
   //   //doenload payment receiprt
