@@ -110,7 +110,7 @@ const Stacknavigation = () => {
             />
             <Stack.Screen name="Courses" component={Courses}
                 options={{
-                    title: 'Plans',
+                    title: 'Courses',
                     headerStyle: {
                         backgroundColor: '#e8661b',
                     },

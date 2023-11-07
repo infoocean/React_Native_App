@@ -135,6 +135,17 @@ const LoginWithTouchpassword = ({ navigation }: any) => {
                                 {({ handleChange, handleBlur, handleSubmit, touched, values, errors }) => (
                                     <>
                                         {openLoginPass && (<><View style={styles.inputContainer}>
+                                            <View style={styles.inputContainer}>
+                                                <TextInput
+                                                    style={styles.input}
+                                                    placeholder="Email"
+                                                    onChangeText={handleChange('email')}
+                                                    onBlur={handleBlur('email')}
+                                                    value={values.email}
+                                                />
+                                                {errorMsg(errors.email && touched.email ? errors.email : null
+                                                )}
+                                            </View>
                                             <TextInput
                                                 style={styles.input}
                                                 placeholder="Password"

@@ -1,63 +1,48 @@
 import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    height: 200,
-  },
   safeAreaView: {
     backgroundColor: 'white',
     flex: 1,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#e8661b',
-    textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  list: {
-    padding: 10,
-  },
-
-  video: {
+  formContent: {
     flexDirection: 'row',
-    marginTop: 15,
-    padding: 5,
-    marginBottom: 5,
+  },
+  inputContainer: {
+    borderBottomColor: 'lightgray',
     backgroundColor: '#FFFFFF',
-    shadowColor: 'black',
-    shadowOpacity: 0.2,
-    shadowOffset: {
-      height: 1,
-      width: -2,
-    },
-    elevation: 2,
+    borderBottomWidth: 1,
+    height: 32,
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    margin: 10,
   },
-  coursetitle: {
-    fontSize: 18,
-    color:"#000000",
+  icon: {
+    width: 25,
+    height: 25,
   },
-  coursedet: {
-    fontSize: 14,
-    color:"#000000",
-    marginTop:5
+  iconBtnSearch: {
+    alignSelf: 'center',
   },
-  thumbnail: {
-    width: '35%',
-    aspectRatio: 16 / 9,
-    borderRadius: 5,
+  inputs: {
+    height: 45,
+    marginLeft: 10,
+    borderBottomColor: '#FFFFFF',
+    flex: 1,
   },
-  details: {
-    padding: 10,
-    width: '100%',
+  inputIcon: {
+    marginLeft: 15,
+    justifyContent: 'center',
   },
-  channel: {
-    color: '#000',
-    fontSize: 15,
+  filterButton: {
+    height: 33,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    width: 50,
+    alignSelf: 'flex-end',
+    backgroundColor: '#e8661b',
+    borderRadius: 20,
   },
 });
-
 export {styles};

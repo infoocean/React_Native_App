@@ -6,13 +6,14 @@ const styles = StyleSheet.create({
   },
   /*how it works style*/
   howitworkscontainer: {
-    marginBottom: 10,
+    marginBottom: 30,
+    marginTop:10
   },
   Iconcircle: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    marginTop: 20,
+    marginTop: 30,
   },
   iconarticle1: {
     position: 'relative',
@@ -52,20 +53,18 @@ const styles = StyleSheet.create({
   },
   /*top enrolled courses style*/
   topenrolledcoursesContainer: {
-    marginTop: 15,
+    marginTop: 1,
   },
   topenrolledcoursesSection: {
     paddingHorizontal: 10,
   },
   sectionCard: {
     width: 80,
-    minHeight: 120,
+    minHeight: 125,
     backgroundColor: 'white',
     shadowColor: 'gray',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 10,
+    elevation: 2,
     marginTop: 15,
     marginRight: 15,
     marginBottom: 15,
@@ -75,9 +74,9 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   courseInfo: {
-    padding: 5,
-    marginBottom: 0,
-    paddingBottom: 0,
+    marginTop:5,
+    marginBottom:0,
+    paddingBottom:0
   },
   courseTirle: {
     fontSize: 13,
@@ -89,9 +88,8 @@ const styles = StyleSheet.create({
     fontSize: 9,
     textAlign: 'center',
     color: 'gray',
-    marginBottom: 0,
-    paddingBottom: 0,
+    marginBottom:0,
+    paddingBottom:0
   },
 });
-
 export {styles};

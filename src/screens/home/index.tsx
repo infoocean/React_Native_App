@@ -9,61 +9,58 @@ import { TitleWithLinkComponent } from '../../components/homeScreenCmp/TitleWith
 import { useSelector } from 'react-redux';
 import { getAllCourse, getTopEnrolledCourse } from '../../services/courseServices';
 import { SERVER_API_URL } from '../../api/api';
+import PriceCard from '../../components/Common/PriceCard';
+import { getSubscriptionsPlans } from '../../services/subscriptionServices';
 
-const matches = [
-  {
-    id: 1,
-    avatar: 'https://bootdey.com/img/Content/avatar/avatar2.png',
-    name: 'John Doe',
-    age: '30',
-  },
-  {
-    id: 2,
-    avatar: 'https://bootdey.com/img/Content/avatar/avatar3.png',
-    name: 'John Doe',
-    age: '30',
-  },
-  {
-    id: 3,
-    avatar: 'https://bootdey.com/img/Content/avatar/avatar4.png',
-    name: 'John Doe',
-    age: '30',
-  },
-  {
-    id: 4,
-    avatar: 'https://bootdey.com/img/Content/avatar/avatar5.png',
-    name: 'John Doe',
-    age: '30',
-  },
-  {
-    id: 5,
-    avatar: 'https://bootdey.com/img/Content/avatar/avatar6.png',
-    name: 'John Doe',
-    age: '30',
-  }
-]
-
+//course card component
+export const CourseCard = (props: any) => {
+  return (
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+      {props?.data && props?.data.length > 0 && props?.data?.map((item: any, index: any) => (
+        <TouchableOpacity>
+          <View style={styles.sectionCard} key={index}>
+            <Image style={styles.sectionImage} source={{ uri: `${SERVER_API_URL}/${item?.image || item?.course?.image}` }} />
+            <View style={styles.courseInfo}>
+              <Text style={styles.courseTirle}>{item?.title || item?.course?.title}</Text>
+              <Text style={styles.courseType}>Type: {item?.is_chargeable || item?.course?.is_chargeable}</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      ))}
+    </ScrollView>
+  )
+}
 const Home = () => {
   const AuthToken = useSelector((state: any) => state?.setLoginUserReducer?.token);
   const [FreeCourses, setFreeCourses] = useState<any>([])
   const [PaidCourses, setPaidCourses] = useState<any>([])
   const [TopEnroledCourses, setTopEnroledCourses] = useState<any>([])
+  const [SubscriptionPlans, setSubscriptionPlans] = useState<any>([])
   //get all courses
   const getCourses = async () => {
     const courseData: any = await getAllCourse(AuthToken);
+    setFreeCourses(courseData.filter((item: any) => {
+      return item?.course?.is_chargeable === 'free';
+    }))
+    setPaidCourses(courseData.filter((item: any) => {
+      return item?.course?.is_chargeable === 'paid';
+    }))
   }
   //get top enrolled Courses
   const getTopEnrolledCourses = async () => {
     const EnrolledcourseData: any = await getTopEnrolledCourse(AuthToken);
     setTopEnroledCourses(EnrolledcourseData)
   }
+  //get subscriptionplans
+  const getSubscriptionPlans = async () => {
+    const plansData: any = await getSubscriptionsPlans(AuthToken);
+    setSubscriptionPlans(plansData[0])
+  }
   useEffect(() => {
     getCourses();
     getTopEnrolledCourses();
+    getSubscriptionPlans();
   }, [])
-
-  console.log(TopEnroledCourses, "fkj")
-
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <ScrollView>
@@ -110,91 +107,32 @@ const Home = () => {
           <TitleWithBottomLineComponent headerTitle="Top Enrolled Courses" borderWidth="160" />
           <View style={styles.topenrolledcoursesSection}>
             <TitleWithLinkComponent title="6 Courses Showing" navigatioName="" />
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} >
-              {TopEnroledCourses && TopEnroledCourses.length > 0 && TopEnroledCourses?.map(({ image, id, title, is_chargeable }: any) => (
-                <View style={styles.sectionCard} key={id}>
-                  <Image style={styles.sectionImage} source={{ uri: `${SERVER_API_URL}/${image}` }} />
-                  <View style={styles.courseInfo}>
-                    <Text style={styles.courseTirle}>{title}</Text>
-                    <Text style={styles.courseType}>Type: {is_chargeable}</Text>
-                  </View>
-                </View>
-              ))}
-            </ScrollView>
+            <CourseCard data={TopEnroledCourses} />
           </View>
         </View>
         {/*top free courses*/}
-        {/* <View style={styles.topenrolledcourses}>
-          <HeaderTitle />
-          <View style={styles.container}>
-            <View style={styles.section}>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>6 Courses Showing</Text>
-                <TouchableOpacity style={styles.seeAllButton}>
-                  <Text style={styles.seeAllButtonText}>See all</Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.sectionBody}>
-                <ScrollView horizontal contentContainerStyle={styles.sectionScroll}>
-                  {matches.map(({ avatar, id, name, age }) => (
-                    <View style={styles.sectionCard} key={id}>
-                      <Image style={styles.sectionImage} source={{ uri: avatar }} />
-                      <View style={styles.sectionInfo}>
-                        <Text style={styles.sectionLabel}>{name}</Text>
-                        <Text style={styles.sectionLabel}>Age: {age}</Text>
-                      </View>
-                    </View>
-                  ))}
-                </ScrollView>
-              </View>
-            </View>
+        <View style={styles.topenrolledcoursesContainer}>
+          <TitleWithBottomLineComponent headerTitle="Top Free Courses" borderWidth="120" />
+          <View style={styles.topenrolledcoursesSection}>
+            <TitleWithLinkComponent title="6 Courses Showing" navigatioName="" />
+            <CourseCard data={FreeCourses} />
           </View>
-        </View> */}
+        </View>
         {/*top paid courses*/}
-        {/* <View style={styles.topenrolledcourses}>
-          <HeaderTitle />
-          <View style={styles.container}>
-            <View style={styles.section}>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>6 Courses Showing</Text>
-                <TouchableOpacity style={styles.seeAllButton}>
-                  <Text style={styles.seeAllButtonText}>See all</Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.sectionBody}>
-                <ScrollView horizontal contentContainerStyle={styles.sectionScroll}>
-                  {matches.map(({ avatar, id, name, age }) => (
-                    <View style={styles.sectionCard} key={id}>
-                      <Image style={styles.sectionImage} source={{ uri: avatar }} />
-                      <View style={styles.sectionInfo}>
-                        <Text style={styles.sectionLabel}>{name}</Text>
-                        <Text style={styles.sectionLabel}>Age: {age}</Text>
-                      </View>
-                    </View>
-                  ))}
-                </ScrollView>
-              </View>
-            </View>
+        <View style={styles.topenrolledcoursesContainer}>
+          <TitleWithBottomLineComponent headerTitle="Top Paid Courses" borderWidth="120" />
+          <View style={styles.topenrolledcoursesSection}>
+            <TitleWithLinkComponent title="6 Courses Showing" navigatioName="" />
+            <CourseCard data={PaidCourses} />
           </View>
-        </View> */}
+        </View>
         {/*our subscription plan*/}
-        {/* <View style={styles.topenrolledcourses}>
-          <HeaderTitle />
-          <View style={styles.container}>
-            <PricingCard
-              color="black"
-              title="Basic Plan"
-              price="$200"
-              info={['1 User', 'Basic Support', 'All Core Features']}
-              button={{ title: 'Subscribe Now', icon: 'flight-takeoff' }}
-            />
-          </View>
-        </View> */}
+        <View style={styles.topenrolledcoursesContainer}>
+          <TitleWithBottomLineComponent headerTitle="Our Subscription plan" borderWidth="140" />
+          <PriceCard plansdata={SubscriptionPlans} />
+        </View>
       </ScrollView>
     </SafeAreaView >
-
-
   );
 };
-
 export default Home;

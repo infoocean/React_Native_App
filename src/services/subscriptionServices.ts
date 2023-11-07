@@ -27,4 +27,21 @@ const getSubscriptions = async (authtoken: string) => {
   }
 };
 
-export {getSubscriptions, getSubscriptionDet};
+//get subscription plans
+const getSubscriptionsPlans = async (authtoken: string) => {
+  try {
+    const response = await fetch(API.getallsubscriptionsplans, {
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authtoken}`,
+      },
+    });
+    return await response.json();
+  } catch (error) {
+    return error;
+  }
+};
+
+export {getSubscriptions, getSubscriptionDet, getSubscriptionsPlans};

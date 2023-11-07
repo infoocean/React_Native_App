@@ -75,7 +75,7 @@ export const API = {
   //   getpaymentdetails: `${BASE_URL}/getpaymentdetails`,
 
   //   //subscriptions Plan manage
-  //   allsubscriptions: `${BASE_URL}/subscriptionplans`,
+  getallsubscriptionsplans: `${SERVER_API_URL}/subscriptionplans`,
   //   getsubscriptionplandet: `${BASE_URL}/subscriptionplandetbyid`,
   //   addSubscriptionPlans: `${BASE_URL}/addsubscriptionplans`,
   //   updateSubscriptionPlans: `${BASE_URL}/updatesubscriptionplans`,
