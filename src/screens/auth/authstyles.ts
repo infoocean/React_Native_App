@@ -17,6 +17,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 60,
   },
+
+  pinLoginContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+
   Logincard: {
     backgroundColor: '#fff',
     borderRadius: 10,
@@ -215,27 +223,5 @@ export const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     color: '#fff',
-  },
-  loginBottomView: {
-    position: 'absolute',
-    bottom: 10,
-    marginRight: 30,
-    marginLeft: 57,
-  },
-  iconContainer: {
-    flex: 1,
-    alignItems: 'center',
-    display: 'flex',
-    justifyContent:'space-between',
-    flexDirection: 'row',
-  },
-  btnopacity: {
-    marginRight: 33,
-    alignContent: 'center',
-    alignItems: 'center',
-  },
-  iconFonts: {
-    color: 'black',
-    fontSize: 15,
   },
 });

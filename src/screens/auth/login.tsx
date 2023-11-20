@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Text,
     View,
@@ -8,6 +8,7 @@ import {
     SafeAreaView,
     RefreshControl,
     ActivityIndicator,
+    Alert,
 } from 'react-native';
 import { styles } from './authstyles';
 import { Link } from '@react-navigation/native';
@@ -21,20 +22,47 @@ import { userLogin } from '../../services/authServices';
 import Toast from 'react-native-toast-message';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
-import { setLoginUser } from '../../Redux/actions/authActions';
+import { setLogedIn, setLoginPin, setLoginUser } from '../../Redux/actions/authActions';
+import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
+import FooterWebView from '../../components/Common/footerWebView';
 const Login = ({ navigation }: any) => {
     const dispatch = useDispatch();
     const AuthToken = useSelector((state: any) => state?.setLoginUserReducer?.token);
+    const LoginUserData = useSelector((state: any) => state?.setLoginUserReducer);
     const initialValues: LoginFormInputTypes = loginFormInitialValue;
     const [refreshing, setRefreshing] = React.useState(false);
     const [loading, setloading] = React.useState(false)
     const [disable, setdisable] = React.useState(false)
+    const [pin, setPin] = useState('');
+    const [confirmpin, setconfirmpin] = useState('');
+    const [showBottomView, setShowBottomView] = useState(true);
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         setTimeout(() => {
             setRefreshing(false);
         }, 2000);
     }, []);
+
+    const pinCodeChanged = (code: any) => {
+        setPin(code);
+    };
+    const confirmpinCodeChanged = (code: any) => {
+        setconfirmpin(code);
+    };
+    const handlePinSubmit = () => {
+        if (pin === confirmpin) {
+            dispatch(setLoginPin({ loginpin: pin, loginPinSkip: "yes" }));
+            navigation.navigate('Login');
+
+        } else {
+            Alert.alert('Pin and Confirm pin are not same', "", [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+            ]);
+        }
+    }
     return (
         <>
             <SafeAreaView style={styles.container}>
@@ -55,7 +83,7 @@ const Login = ({ navigation }: any) => {
                                 <Link style={styles.createlink} to={{ screen: 'Register' }} > Create Now
                                 </Link>
                             </Text>
-                            <Formik
+                            {!LoginUserData?.logedIn ? (<Formik
                                 initialValues={initialValues}
                                 validationSchema={loginInputValidation}
                                 onSubmit={async (values) => {
@@ -74,6 +102,8 @@ const Login = ({ navigation }: any) => {
                                         });
                                         setTimeout(() => {
                                             dispatch(setLoginUser(loginUserData))
+                                            dispatch(setLogedIn(true))
+                                            dispatch(setLoginPin({ loginpin: null, loginPinSkip: "no", loginprocess: false }))
                                         }, 1000);
                                         setloading(false);
                                         setdisable(false);
@@ -122,7 +152,52 @@ const Login = ({ navigation }: any) => {
                                         </TouchableOpacity>
                                     </>
                                 )}
-                            </Formik>
+                            </Formik>) :
+                                <>
+                                    <View style={{ flex: 1, marginTop: 20, marginBottom: 20 }}>
+                                        <Text style={{ color: 'black', fontSize: 12, fontWeight: 'bold', textAlign: 'center' }}>Add 4 DigitLogin PIN:</Text>
+                                        <Text style={{ marginTop: 20 }}>Enter Pin</Text>
+                                        <SmoothPinCodeInput
+                                            codeLength={4}
+                                            cellSize={30}
+                                            cellSpacing={10}
+                                            cellStyle={{
+                                                borderBottomWidth: 2,
+                                                borderColor: 'gray',
+                                            }}
+                                            cellStyleFocused={{
+                                                borderColor: 'gray',
+
+                                            }}
+                                            value={pin}
+                                            onTextChange={pinCodeChanged}
+                                            textStyle={{ fontSize: 18 }}
+                                        />
+                                        <Text style={{ marginTop: 20 }}>Confirm Pin</Text>
+                                        <SmoothPinCodeInput
+                                            codeLength={4}
+                                            cellSize={30}
+                                            cellSpacing={10}
+                                            cellStyle={{
+                                                borderBottomWidth: 2,
+                                                borderColor: 'gray',
+                                            }}
+                                            cellStyleFocused={{
+                                                borderColor: 'gray',
+
+                                            }}
+                                            value={confirmpin}
+                                            onTextChange={confirmpinCodeChanged}
+                                            textStyle={{ fontSize: 18 }}
+                                        />
+
+                                    </View>
+                                    <TouchableOpacity style={[styles.button]} onPress={() => handlePinSubmit()}
+                                    ><Text style={styles.buttonText}>SET PIN</Text></TouchableOpacity>
+                                    {/* <Link style={[styles.createlink, { marginTop: 20 }]} to={{ screen: 'Login' }} > Skip
+                                    </Link> */}
+                                </>
+                            }
                             <View style={styles.seprator}>
                                 <View style={styles.horizantolline} />
                                 <View>
@@ -147,6 +222,7 @@ const Login = ({ navigation }: any) => {
                         </View>
                     </View>
                 </ScrollView>
+                <FooterWebView />
             </SafeAreaView>
             <Toast />
         </>

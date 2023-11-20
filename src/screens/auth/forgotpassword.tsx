@@ -18,6 +18,7 @@ import errorMsg from '../../components/errorShow/errorMsg';
 import { useSelector } from 'react-redux';
 import { forgotPassword } from '../../services/authServices';
 import Toast from 'react-native-toast-message';
+import FooterWebView from '../../components/Common/footerWebView';
 const ForgotPassword = () => {
     const AuthToken = useSelector((state: any) => state?.setLoginUserReducer?.token);
     const initialValues: ForgotFormInputTypes = forgotFormInitialValue;
@@ -122,6 +123,7 @@ const ForgotPassword = () => {
                     </View>
                 </View>
             </ScrollView>
+            <FooterWebView />
             <Toast />
         </>
     );

@@ -10,6 +10,7 @@ import {
     ActivityIndicator,
     StyleSheet,
     ImageBackground,
+    Keyboard,
 } from 'react-native';
 import { styles } from './authstyles';
 import { Link } from '@react-navigation/native';
@@ -23,12 +24,12 @@ import { userLogin } from '../../services/authServices';
 import Toast from 'react-native-toast-message';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
-import { setLoginUser } from '../../Redux/actions/authActions';
+import { setLoginPin, setLoginUser } from '../../Redux/actions/authActions';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ANTIcon from 'react-native-vector-icons/AntDesign';
-import SMPIcon from 'react-native-vector-icons/SimpleLineIcons';
 import TouchID from 'react-native-touch-id';
+import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import { Alert } from 'react-native';
+import FooterWebView from '../../components/Common/footerWebView';
 const optionalConfigObject = {
     title: 'Please Authenticate', // Android
     imageColor: '#000', // Android
@@ -40,17 +41,17 @@ const optionalConfigObject = {
     unifiedErrors: false, // use unified error messages (default false)
     passcodeFallback: false, // iOS
 };
-
 const LoginWithTouchpassword = ({ navigation }: any) => {
     const dispatch = useDispatch();
     const AuthToken = useSelector((state: any) => state?.setLoginUserReducer?.token);
+    const userLoginDT = useSelector((state: any) => state?.setLoginUserReducer);
     const initialValues: LoginFormInputTypes = loginFormInitialValue;
     const [refreshing, setRefreshing] = React.useState(false);
     const [loading, setloading] = React.useState(false)
     const [disable, setdisable] = React.useState(false)
     const [openLoginPass, setopenLoginPass] = React.useState(false)
     const [biometryType, setBiometryType] = useState<any>(null);
-
+    const [pin, setPin] = useState('');
     const handleAuthentication = () => {
         TouchID.isSupported()
             .then(authenticateBiometric)
@@ -76,7 +77,21 @@ const LoginWithTouchpassword = ({ navigation }: any) => {
                 console.log(error);
             });
     }, [])
-
+    const pinCodeChanged = (code: any) => {
+        setPin(code);
+        if (code.length === 4) {
+            if (userLoginDT?.loginPin?.loginpin === code) {
+                dispatch(setLoginPin({ loginpin: userLoginDT?.loginPin?.loginpin, loginPinSkip: userLoginDT?.loginPin?.loginPinSkip, loginprocess: true }))
+            } else {
+                Alert.alert('Incorrect Pin', "", [
+                    {
+                        text: 'Cancel',
+                        style: 'cancel',
+                    },
+                ]);
+            }
+        }
+    };
     return (
         <>
             <SafeAreaView style={styles.container}>
@@ -86,8 +101,7 @@ const LoginWithTouchpassword = ({ navigation }: any) => {
                         style={styles.header}>
                         <Text style={styles.heading}>WELCOME TO LMS APP</Text>
                     </ImageBackground>
-                    <View style={styles.LoginContainer}>
-
+                    <View style={styles.pinLoginContainer}>
                         <View style={styles.logoContainer}>
                             <Image
                                 source={{ uri: `https://mangoit-lms.mangoitsol.com/Images/pages_icon/company_logo.png` }}
@@ -135,7 +149,7 @@ const LoginWithTouchpassword = ({ navigation }: any) => {
                                 {({ handleChange, handleBlur, handleSubmit, touched, values, errors }) => (
                                     <>
                                         {openLoginPass && (<><View style={styles.inputContainer}>
-                                            <View style={styles.inputContainer}>
+                                            {/* <View style={styles.inputContainer}>
                                                 <TextInput
                                                     style={styles.input}
                                                     placeholder="Email"
@@ -145,15 +159,17 @@ const LoginWithTouchpassword = ({ navigation }: any) => {
                                                 />
                                                 {errorMsg(errors.email && touched.email ? errors.email : null
                                                 )}
+                                            </View> */}
+                                            <View style={styles.inputContainer}>
+                                                <TextInput
+                                                    style={styles.input}
+                                                    placeholder="Password"
+                                                    secureTextEntry={true}
+                                                    onChangeText={handleChange('password')}
+                                                    onBlur={handleBlur('password')}
+                                                    value={values.password} />
+                                                {errorMsg(errors.password && touched.password ? errors.password : null)}
                                             </View>
-                                            <TextInput
-                                                style={styles.input}
-                                                placeholder="Password"
-                                                secureTextEntry={true}
-                                                onChangeText={handleChange('password')}
-                                                onBlur={handleBlur('password')}
-                                                value={values.password} />
-                                            {errorMsg(errors.password && touched.password ? errors.password : null)}
                                         </View>
                                             <TouchableOpacity style={styles.forgotPasswordButton}>
                                                 <Link style={styles.forgotPasswordButtonText} to={{ screen: 'Forgot Password' }} >Forgot a password?</Link>
@@ -188,32 +204,35 @@ const LoginWithTouchpassword = ({ navigation }: any) => {
                                         >
                                             <Text style={styles.buttonTextnew}>Login with Password </Text>
                                         </TouchableOpacity>}
+
+                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                            <Text style={{ marginBottom: 6, paddingBottom: 0 }}>Or, Enter 4 Digit Login PIN:</Text>
+                                            <SmoothPinCodeInput
+                                                codeLength={4}
+                                                cellSize={30}
+                                                cellSpacing={10}
+                                                cellStyle={{
+                                                    borderBottomWidth: 2,
+                                                    borderColor: 'gray',
+                                                }}
+                                                cellStyleFocused={{
+                                                    borderColor: 'gray',
+
+                                                }}
+                                                value={pin}
+                                                onTextChange={pinCodeChanged}
+                                                textStyle={{ fontSize: 18 }}
+                                            />
+
+                                            <Link to={{ screen: 'Forgot Pin' }} style={{ marginTop: 15, color: '#e8661b', }}>Forgot Pin</Link>
+                                        </View>
                                     </>
                                 )}
                             </Formik>
                         </View>
                     </View>
                 </ScrollView>
-                <View style={styles.loginBottomView}>
-                    <View style={styles.iconContainer}>
-                        <TouchableOpacity style={styles.btnopacity} onPress={() => navigation.navigate('Home')}>
-                            <ANTIcon name='home' color={'black'} size={20} />
-                            <Text style={styles.iconFonts}>Home</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.btnopacity} onPress={() => navigation.navigate('About')}>
-                            <ANTIcon name='infocirlceo' color={'black'} size={20} />
-                            <Text style={styles.iconFonts}>About</Text>
-                        </TouchableOpacity >
-                        <TouchableOpacity style={styles.btnopacity} onPress={() => navigation.navigate('Courses')}>
-                            <ANTIcon name='book' size={20} color={'black'} />
-                            <Text style={styles.iconFonts}>Courses</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.btnopacity} onPress={() => navigation.navigate('Plans')}>
-                            <SMPIcon name='plane' color={'black'} size={20} />
-                            <Text style={styles.iconFonts}>Plans</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <FooterWebView />
             </SafeAreaView>
             <Toast />
         </>

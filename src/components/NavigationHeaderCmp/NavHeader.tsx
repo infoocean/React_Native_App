@@ -5,7 +5,7 @@ import EGIcon from 'react-native-vector-icons/Entypo';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
 import FIcon from 'react-native-vector-icons/FontAwesome';
 import { Badge } from 'react-native-elements';
-import { setLoginUser } from '../../Redux/actions/authActions';
+import { setLogedIn, setLoginPin, setLoginUser } from '../../Redux/actions/authActions';
 import { useDispatch } from 'react-redux';
 const NavRighrtheader = (props: any) => {
     const dispatch = useDispatch();
@@ -22,6 +22,8 @@ const NavRighrtheader = (props: any) => {
     const handleLogout = () => {
         setopenListDropdown(false);
         dispatch(setLoginUser(""))
+        dispatch(setLogedIn(""))
+        dispatch(setLoginPin(""));
     }
     const data = [
         { id: 1, description: 'Lorem ipsum dolor...' },

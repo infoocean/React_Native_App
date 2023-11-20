@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   /*how it works style*/
   howitworkscontainer: {
     marginBottom: 30,
-    marginTop:10
+    marginTop: 10,
   },
   Iconcircle: {
     flexDirection: 'row',
@@ -74,9 +74,9 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   courseInfo: {
-    marginTop:5,
-    marginBottom:0,
-    paddingBottom:0
+    marginTop: 5,
+    marginBottom: 0,
+    paddingBottom: 0,
   },
   courseTirle: {
     fontSize: 13,
@@ -88,8 +88,54 @@ const styles = StyleSheet.create({
     fontSize: 9,
     textAlign: 'center',
     color: 'gray',
-    marginBottom:0,
-    paddingBottom:0
+    marginBottom: 0,
+    paddingBottom: 0,
+  },
+
+  /*bluthooth*/
+  buttonStyle: {
+    backgroundColor: '#307ecc',
+    borderWidth: 0,
+    color: '#FFFFFF',
+    borderColor: '#307ecc',
+    height: 40,
+    alignItems: 'center',
+    borderRadius: 30,
+    marginLeft: 35,
+    marginRight: 35,
+    marginTop: 5,
+  },
+  buttonTextStyle: {
+    color: '#FFFFFF',
+    paddingVertical: 10,
+    fontSize: 16,
+  },
+  noDevicesText: {
+    textAlign: 'center',
+    marginTop: 10,
+    fontStyle: 'italic',
+  },
+  deviceContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  deviceItem: {
+    marginBottom: 10,
+  },
+  deviceName: {
+    fontSize: 22,
+    fontWeight: 'bold',
+  },
+  deviceInfo: {
+    fontSize: 14,
+  },
+  deviceButton: {
+    backgroundColor: '#2196F3',
+    padding: 8,
+    borderRadius: 5,
+    marginBottom: 20,
+    paddingHorizontal: 20,
   },
 });
 export {styles};

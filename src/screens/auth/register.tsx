@@ -18,6 +18,7 @@ import { Formik } from 'formik';
 import { userRegistration } from '../../services/authServices';
 import { useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
+import FooterWebView from '../../components/Common/footerWebView';
 const Register = ({ navigation }: any) => {
     const AuthToken = useSelector((state: any) => state?.setLoginUserReducer?.token);
     const initialValues: RegisterFormInputTypes = registerFormInitialValue;
@@ -158,6 +159,7 @@ const Register = ({ navigation }: any) => {
                     </View>
                 </View>
             </ScrollView>
+            <FooterWebView />
             <Toast />
         </>
     );

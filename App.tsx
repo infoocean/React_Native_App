@@ -18,6 +18,7 @@ function App(): JSX.Element {
   const dispatch = useDispatch();
   //get  login user det from redux store
   const LoginUserData = useSelector((state: any) => state?.setLoginUserReducer?.userDetail);
+  const LoginUserDt = useSelector((state: any) => state?.setLoginUserReducer);
   const gettoken = async () => {
     const authtoken = await getAuthorizationToken();
     dispatch(setauthtoken(authtoken))
@@ -25,10 +26,9 @@ function App(): JSX.Element {
   useEffect(() => {
     gettoken();
   }, [])
-
   return (
     <NavigationContainer>
-      {(Object.keys(LoginUserData).length !== 0) && LoginUserData?.userDetails?.role_id !== 1 ? <BottomTabNavigation /> : (Object.keys(LoginUserData).length !== 0) && LoginUserData?.userDetails?.role_id !== 2 ? <Drawernavigation /> : <Stacknavigation />
+      {(Object.keys(LoginUserData).length !== 0) && LoginUserData?.userDetails?.role_id !== 1 && LoginUserDt?.loginPin?.loginpin != null && LoginUserDt?.loginPin?.loginprocess === true ? <BottomTabNavigation /> : (Object.keys(LoginUserData).length !== 0) && LoginUserData?.userDetails?.role_id !== 2 && LoginUserDt?.loginPin?.loginpin != null && LoginUserDt?.loginPin?.loginprocess === true ? <Drawernavigation /> : <Stacknavigation />
       }
     </NavigationContainer>
   );

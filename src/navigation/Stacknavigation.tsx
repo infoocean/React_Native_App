@@ -9,6 +9,8 @@ import { About } from '../screens/about';
 import Plans from '../screens/plans';
 import Courses from '../screens/courses';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useSelector } from 'react-redux';
+import Login from '../screens/auth/login';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -28,12 +30,12 @@ function Home() {
     );
 }
 
-
 const Stacknavigation = () => {
+    const LoginUserData = useSelector((state: any) => state?.setLoginUserReducer);
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="Login" component={LoginWithTouchpassword}
+                name="Login" component={Object.keys(LoginUserData?.userDetail).length !== 0 && LoginUserData?.logedIn === true && LoginUserData?.loginPin?.loginPinSkip === "yes" ? LoginWithTouchpassword : Login}
                 options={{
                     title: 'Login',
                     headerStyle: {
